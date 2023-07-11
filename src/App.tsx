@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 import Table from "./components/table";
-import {ColumnInterface} from "./types";
 
 const tableSchemaMock = {
   name: {
@@ -29,39 +28,6 @@ const tableSchemaMock = {
     width: 150,
   }
 }
-
-const columnsMock = [
-  {
-    id: 'name',
-    title: 'Name',
-    type: 'string',
-    ordinateNo: 1,
-    width: 200,
-  },
-  {
-    id: 'email',
-    title: 'Email',
-    type: 'string',
-    ordinateNo: 2,
-    width: 350,
-  },
-  {
-    id: 'age',
-    title: 'Age',
-    type: 'number',
-    ordinateNo: 3,
-    width: 150,
-  },
-  {
-    id: 'gender',
-    title: 'Gender',
-    type: 'options',
-    ordinateNo: 4,
-    width: 150,
-  }
-]
-
-
 const dataMock = {
   qtVzH0AxXE: {
     name: 'Yehor',
@@ -188,17 +154,13 @@ const dataMock = {
 
 const App = () => {
 
-  const [columns, setColumns] = useState(columnsMock);
   const [data, setData] = useState(dataMock);
   const [schema, setSchema] = useState(tableSchemaMock)
 
+  const updateData = (payload: any) => setData(payload)
+  const updateSchema = (payload: any) => setSchema(payload)
 
-  const updateColumns = (value: Array<ColumnInterface>) => {
-    setColumns(value)
-  }
-
-
-  return <Table schema={schema} columns={columns} rows={data}/>;
+  return <Table schema={schema} rows={data}/>;
 }
 
 export default App;
